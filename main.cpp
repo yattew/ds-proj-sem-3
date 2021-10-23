@@ -19,7 +19,7 @@ public:
     void interpret(const string &s)
     {
         vector<string> tokens = tokenize(s);
-        unsigned int idx = 0;
+        int idx = 0;
         while (idx != tokens.size())
         {
             if (is_number(tokens[idx]))
@@ -28,21 +28,43 @@ public:
             }
             else if (tokens[idx] == "+")
             {
+                add();
             }
             else if (tokens[idx] == "-")
             {
+                subtract();
             }
             else if (tokens[idx] == "*")
             {
+                multiply();
             }
             else if (tokens[idx] == "/")
             {
+                divide();
             }
             else if (tokens[idx] == "%")
             {
+                remainder();
             }
             else if (tokens[idx] == "dup")
             {
+                dup();
+            }
+            else if (tokens[idx] == "<")
+            {
+                less_than();
+            }
+            else if (tokens[idx] == ">")
+            {
+                greater_than();
+            }
+            else if (tokens[idx] == "==")
+            {
+                equal_to();
+            }
+            else if (tokens[idx] == "if")
+            {
+                run_if(idx, tokens);
             }
             else if (tokens[idx] == "makeword")
             {
@@ -105,6 +127,38 @@ public:
     void dup() {}
     void compile_word() {}
     void run_word(string word_string) {}
+    void less_than() {}
+    void greater_than() {}
+    void equal_to() {}
+    void run_if(int &idx, vector<string> &tokens)
+    {
+        //todo: make this implimentation work for nested if else endif blocks
+        string if_string;
+        string else_string;
+        string temp;
+        idx++;
+        while(idx<tokens.size()&&tokens[idx]!="endif"&&tokens[idx]!="else")
+        {
+            if_string+=tokens[idx++]+" ";
+        }
+        if(tokens[idx] == "else")
+            idx++;
+        while(idx<tokens.size()&&tokens[idx]!="endif")
+        {
+            else_string+=tokens[idx++]+" ";
+        }
+        if(idx>=tokens.size())
+        {
+            cout<<"error no endif found"<<endl;
+        }
+        if(main_stack.top()!="0")
+        {
+            interpret(if_string);
+        }
+        else{
+            interpret(else_string);
+        }
+    }
     void top()
     {
         cout << main_stack.top() << endl;
