@@ -112,11 +112,14 @@ public:
                 }
             }
             else
-            {
                 temp.push_back(x);
-            }
         }
-        tokens.push_back(temp);
+        string temp1;
+        for (auto x : temp)
+            if (x != ' ')
+                temp1.push_back(x);
+        if (temp1.size() > 0)
+            tokens.push_back(temp1);
         return tokens;
     }
     void add() {}
@@ -137,25 +140,26 @@ public:
         string else_string;
         string temp;
         idx++;
-        while(idx<tokens.size()&&tokens[idx]!="endif"&&tokens[idx]!="else")
+        while (idx < tokens.size() && tokens[idx] != "endif" && tokens[idx] != "else")
         {
-            if_string+=tokens[idx++]+" ";
+            if_string += tokens[idx++] + " ";
         }
-        if(tokens[idx] == "else")
+        if (tokens[idx] == "else")
             idx++;
-        while(idx<tokens.size()&&tokens[idx]!="endif")
+        while (idx < tokens.size() && tokens[idx] != "endif")
         {
-            else_string+=tokens[idx++]+" ";
+            else_string += tokens[idx++] + " ";
         }
-        if(idx>=tokens.size())
+        if (idx >= tokens.size())
         {
-            cout<<"error no endif found"<<endl;
+            cout << "error no endif found" << endl;
         }
-        if(main_stack.top()!="0")
+        if (main_stack.top() != "0")
         {
             interpret(if_string);
         }
-        else{
+        else
+        {
             interpret(else_string);
         }
     }
