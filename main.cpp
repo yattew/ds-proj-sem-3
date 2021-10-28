@@ -127,7 +127,11 @@ public:
     void multiply() {}
     void divide() {}
     void remainder() {}
-    void dup() {}
+    void dup()
+    {
+        int temp = stoi(main_stack.top());
+        main_stack.push(to_string(temp));
+    }
     void compile_word() {}
     void run_word(string word_string) {}
     void less_than() {}
