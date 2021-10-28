@@ -198,7 +198,7 @@ int main(int argc, char **argv)
         while (true)
         {
             string in;
-            cout << ">>";
+            cout << ">>>> ";
             getline(cin, in, '\n');
             I.interpret(in);
         }
