@@ -125,7 +125,14 @@ public:
     void add() {}
     void subtract() {}
     void multiply() {}
-    void divide() {}
+    void divide()
+    {
+        int top_x = stoi(main_stack.top());
+        main_stack.pop();
+        int top_y = stoi(main_stack.top());
+        main_stack.pop();
+        main_stack.push(to_string(top_y / top_x));
+    }
     void remainder() {}
     void dup()
     {
