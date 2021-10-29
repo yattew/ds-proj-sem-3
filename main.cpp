@@ -4,6 +4,8 @@ bool is_number(string s)
 {
     if (s[0] == '-')
         s = s.substr(1);
+    if(s.length()==0)
+        return false;
     for (int i = 0; i < s.length(); i++)
         if (isdigit(s[i]) == false)
             return false;
