@@ -122,9 +122,30 @@ public:
             tokens.push_back(temp1);
         return tokens;
     }
-    void add() {}
-    void subtract() {}
-    void multiply() {}
+    void add() 
+    {
+        int top_x = stoi(main_stack.top());
+        main_stack.pop();
+        int top_y = stoi(main_stack.top());
+        main_stack.pop();
+        main_stack.push(to_string(top_x + top_y));
+    }
+    void subtract()
+    {
+        int top_x = stoi(main_stack.top());
+        main_stack.pop();
+        int top_y = stoi(main_stack.top());
+        main_stack.pop();
+        main_stack.push(to_string(top_y - top_x));
+    }
+    void multiply()
+    {
+        int top_x = stoi(main_stack.top());
+        main_stack.pop();
+        int top_y = stoi(main_stack.top());
+        main_stack.pop();
+        main_stack.push(to_string(top_x * top_y));
+    }
     void divide()
     {
         int top_x = stoi(main_stack.top());
@@ -133,7 +154,14 @@ public:
         main_stack.pop();
         main_stack.push(to_string(top_y / top_x));
     }
-    void remainder() {}
+    void remainder()
+    {
+        int top_x = stoi(main_stack.top());
+        main_stack.pop();
+        int top_y = stoi(main_stack.top());
+        main_stack.pop();
+        main_stack.push(to_string(top_y % top_x));
+    }
     void dup()
     {
         int temp = stoi(main_stack.top());
