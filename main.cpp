@@ -3,10 +3,10 @@
 #include "interpreter.h"
 using namespace std;
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     Interpreter I;
-    if (argc == 1)
+    if ( argc == 1)
     {
         while (true)
         {
@@ -16,5 +16,9 @@ int main(int argc, char **argv)
             I.interpret(in);
         }
     }
-    else;
+    char*name = *(++argv);
+    ifstream file(name);
+    string temp;
+    while (file>>temp)
+        I.interpret(temp);
 }
