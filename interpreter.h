@@ -72,6 +72,10 @@ void Interpreter::interpret(const string s)
     int idx = 0;
     while (idx != tokens.size())
     {
+        if(tokens[idx] == "exit")
+        {
+            exit(0);
+        }
 
         if (tokens[idx] == "end")
         {
